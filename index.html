@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="todoList Mobin" />
+    <meta name="author" content="Mobin" />
+    <title>Todo List</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/to-do.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="" style="font-style: italic">Todo List App</h2>
+      <div class="form-group">
+        <label for="itemInput">Add Todo</label>
+        <input type="text" class="form-control" id="itemInput" data-bind="value: todoInput" />
+      </div>
+      <div class="nav">
+        <button id="addButton" data-bind="click: addTodo">Add To List</button>
+        <button id="clearButton" data-bind="click: clearAll">Clear List</button>
+        <div class="dropdown">
+          <button class="dropbtn">Filter</button>
+          <div class="dropdown-content">
+            <span class="showAll" data-bind="click: function() { filterType('showAll'); filterTodos(); }">Show All</span>
+            <span class="notCompleted" data-bind="click: function() { filterType('notCompleted'); filterTodos(); }">Not-Completed</span>
+            <span class="completed" data-bind="click: function() { filterType('completed'); filterTodos(); }">Completed</span>
+          </div>
+        </div>
+        
+      </div>
+      <h3>Todo List</h3>
+      <ul id="todoList" data-bind="foreach: todoList">
+        <li class="animate" data-bind="visible: visible">
+          <span  data-bind="text: title"></span>
+          <button id="btnDelete"  data-bind="click: $parent.deleteTodo">Delete</button>
+          <button id="btnComplete" data-bind="click: $parent.toggleComplete, text: complete() ? 'Undo' : 'Complete'"></button>
+        </li>
+      </ul>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
